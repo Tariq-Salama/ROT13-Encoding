@@ -1,0 +1,48 @@
+/**
+ * Encodes a String entered by a user.
+ *
+ * @author Tariq Salama
+ * @author Abib Abib
+ * @version 20231114
+ */
+import java.util.Scanner;
+
+public class EncodingLab {
+
+    public static final String CAPITALS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+    /**
+     * Method that returns a string that is rot13 encoded from the input string.
+     *
+     * @param input
+     *            The string to encode
+     * @return The input string with the rot13 algorithm applied to it
+     */
+    public static String rot13(String input) {
+        StringBuilder sb = new StringBuilder();
+        for (char letter : input.toCharArray()) {
+            if (Character.isUpperCase(letter)) {
+                int letterIndex = CAPITALS.indexOf(letter);
+                int shift = (letterIndex + 13) % 26;
+                char encryptedLetter = CAPITALS.charAt(shift);
+                sb.append(encryptedLetter);
+            } else {
+                sb.append(letter);
+            }
+        }
+
+
+        return sb.toString();
+    }
+
+    public static void main(String[] args) {
+
+        Scanner keyboard = new Scanner(System.in);
+        System.out.print("Enter a string to encode: ");
+        String input = keyboard.nextLine();
+        String encoded = rot13(input);
+        System.out.println("Your string encoded is  : " + encoded);
+        keyboard.close();
+
+    }
+} 
